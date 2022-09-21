@@ -18,7 +18,9 @@ class SearchDatabase(TemplateView):
 class AddCar(TemplateView):
     template_name = 'addcar.html'
 
-def register(request):
+def login(request):
+    form = LoginForm()
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -29,8 +31,6 @@ def register(request):
                 template_name='addcar.html',
             )
 
-    form = LoginForm()
-
     return render(
         request = request,
         template_name = 'login.html',
@@ -38,3 +38,7 @@ def register(request):
             'form': form
         }
     )
+
+def registration(request):
+    form = LoginForm()
+    return render(request = request, template_name = 'registration.html', context = {'form': form })
