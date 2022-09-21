@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexView, HomePage, AboutUs, SearchDatabase, LogIn
+from .views import IndexView, HomePage, AboutUs, SearchDatabase, register, AddCar
 
 app_name = 'auto'
 
@@ -8,5 +8,6 @@ urlpatterns = [
     path('home/', HomePage.as_view(), name = 'home'),
     path('aboutus/', AboutUs.as_view(), name = 'aboutus'),
     path('searchdatabase/', SearchDatabase.as_view(), name = 'searchdatabase'),
-    path('login/', LogIn.as_view(), name = 'login'),
+    path('login/', register , name = 'login'),
+    path('addcar/', AddCar.as_view(), name = 'addcar')
 ]

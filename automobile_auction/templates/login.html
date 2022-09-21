@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 {% extends "index.html" %}
     {% block body_block %}
-    <h1>LogIn</h1>
-    {% endblock %}
+
+{% load crispy_forms_tags %}
+{% include 'crispy.html' %}
+  <form method="POST">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <button type="submit" class="btn btn-success">LogIn</button>
+  </form>
+{% endblock %}
