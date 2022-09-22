@@ -25,12 +25,12 @@ class LoginForm(UserCreationForm):
             'username': forms.fields.TextInput(attrs={'placeholder': 'username'}),
         }
 
-    def save(self, commit=True):
-        user = super(LoginForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        user.username = self.cleaned_data['username']
-
-        if commit:
-            user.save()
-
-        return user
+    # def save(self, commit=True):
+    #     user = super(LoginForm, self).save(commit=False)
+    #     user.email = self.cleaned_data['email']
+    #     user.username = self.cleaned_data['username']
+    #
+    #     if commit:
+    #         user.save()
+    #
+    #     return user

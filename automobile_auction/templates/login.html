@@ -18,10 +18,21 @@
 
     <!-- Login Form -->
     <form method="POST">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      {% csrf_token %}
+      <div class="line">
+      {{form.username.label}}
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
+      </div>
+      <div class="line">
+      {{form.password1.label}}
+      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+      </div>
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
+
+    {% for message in messages %}
+      <p> {{message}}</p>
+    {% endfor %}
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
