@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends "index.html" %}
+{% extends "iflogin/logout.html" %}
 {% load static %}
 {% block body_block %}
 
@@ -16,29 +16,32 @@
       <img class="caricon" src="https://upload.wikimedia.org/wikipedia/commons/6/65/Circle-icons-car.svg" id="icon" alt="User Icon" />
     </div>
 
-    <!-- Login Form -->
-    <form method="POST">
+    <!-- Registration Form -->
+    <form method="post">
       {% csrf_token %}
-      <div class="line">
+    <div class="line">
       {{form.username.label}}
-      <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
-      </div>
-      <div class="line">
-      {{form.password1.label}}
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-      </div>
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
-
-    {% for message in messages %}
-      <p> {{message}}</p>
-    {% endfor %}
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+      {{form.username}}
     </div>
+    <div class="line">
+      {{form.email.label}}
+      {{form.email}}
+    </div>
+    <div class="line">
+      {{form.password1.label}}
+      {{form.password1}}
+    </div>
+    <div class="line">
+      {{form.password2.label}}
+      {{form.password2}}
+    </div>
+      <input type="submit" class="fadeIn fourth" value="Register">
+    </form>
+      {{form.errors}}
+    <!-- Remind Passowrd -->
 
   </div>
 </div>
+
+
 {% endblock %}

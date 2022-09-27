@@ -6,19 +6,31 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 class IndexView(TemplateView):
-    template_name = 'index.html'
+    template_name = 'iflogout/index.html'
 
 class HomePage(TemplateView):
-    template_name = 'homepage.html'
+    template_name = 'iflogout/homepage.html'
 
 class AboutUs(TemplateView):
-    template_name = 'aboutus.html'
+    template_name = 'iflogout/aboutus.html'
 
 class SearchDatabase(TemplateView):
-    template_name = 'searchdatabase.html'
+    template_name = 'iflogout/searchdatabase.html'
 
 class AddCar(TemplateView):
-    template_name = 'addcar.html'
+    template_name = 'iflogout/addcar.html'
+
+class LogHomePage(TemplateView):
+    template_name = 'iflogin/loghomepage.html'
+
+class LogAboutUs(TemplateView):
+    template_name = 'iflogin/logaboutus.html'
+
+class LogSearchDatabase(TemplateView):
+    template_name = 'iflogin/logsearchdatabase.html'
+
+class LogAddCar(TemplateView):
+    template_name = 'iflogin/addcar.html'
 
 def loginUser(request):
     form = LoginForm()
@@ -31,12 +43,12 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return render(request, 'homepage.html')
+            return render(request, 'iflogin/logout.html')
         else:
             messages.info(request, 'Zły login lub hasło')
 
     context = {'form': form }
-    return render(request, 'login.html', context)
+    return render(request, 'iflogout/login.html', context)
 
 def registration(request):
     form = LoginForm()
@@ -47,7 +59,13 @@ def registration(request):
             form.save()
             user = form.cleaned_data.get('username')
             messages.success(request, 'Account created, welcome ' + user)
-            return render(request, 'login.html')
+            return render(request, 'iflogout/login.html')
 
     context = {'form': form }
-    return render(request, 'registration.html', context)
+    return render(request, 'iflogout/registration.html', context)
+
+def userLogOut(request):
+    form = LoginForm()
+    logout(request)
+    context = {'form': form}
+    return render(request, 'iflogout/login.html', context)
