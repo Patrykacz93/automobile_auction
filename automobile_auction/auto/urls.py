@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexView, HomePage, AboutUs, SearchDatabase, loginUser, AddCar, registration, userLogOut, LogHomePage, LogAddCar, LogAboutUs, LogSearchDatabase
+from .views import IndexView, HomePage, AboutUs, SearchDatabase, loginUser, AddCar, registration, userLogOut
 
 app_name = 'auto'
 
@@ -12,8 +12,4 @@ urlpatterns = [
     path('logout/', userLogOut , name = 'logout'),
     path('addcar/', AddCar.as_view(), name = 'addcar'),
     path('registration/', registration, name = 'registration'),
-    path('loghome/', LogHomePage.as_view(), name = 'loghome'),
-    path('logaboutus/', LogAboutUs.as_view(), name = 'logaboutus'),
-    path('logsearchdatabase/', LogSearchDatabase.as_view(), name = 'logsearchdatabase'),
-    path('logaddcar/', LogAddCar.as_view(), name = 'addcar'),
 ]

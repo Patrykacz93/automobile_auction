@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <title>Title</title>
     <style>
+    .hello {
+        padding: 15px
+    }
     body {
         background-image: url('https://www.wyborkierowcow.pl/wp-content/uploads/2020/05/nowy-fiat-126p-otwarcie.jpg');
         background-repeat: no-repeat;
@@ -28,10 +31,20 @@
             <li><a href="{% url 'auto:home' %}">Home Page</a></li>
             <li><a href="{% url 'auto:searchdatabase' %}">Search database</a></li>
             <li><a href="{% url 'auto:aboutus' %}">About Us</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'auto:addcar' %}">Add Car</a></li>
+            {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li><div class="hello">Hello, {{request.user}}</div></li>
+            {% endif %}
             <li><a href="{% url 'admin:index' %}">Admin Site</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'auto:logout' %}">Log Out</a></li>
+            {% else %}
             <li><a href="{% url 'auto:login' %}">Log In</a></li>
+            {% endif %}
         </ul>
     </div>
     </nav>

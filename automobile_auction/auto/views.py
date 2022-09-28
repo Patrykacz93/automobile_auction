@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.generic import View, TemplateView
 from .forms import LoginForm
 from django.contrib import messages
@@ -20,17 +20,6 @@ class SearchDatabase(TemplateView):
 class AddCar(TemplateView):
     template_name = 'iflogout/addcar.html'
 
-class LogHomePage(TemplateView):
-    template_name = 'iflogin/loghomepage.html'
-
-class LogAboutUs(TemplateView):
-    template_name = 'iflogin/logaboutus.html'
-
-class LogSearchDatabase(TemplateView):
-    template_name = 'iflogin/logsearchdatabase.html'
-
-class LogAddCar(TemplateView):
-    template_name = 'iflogin/addcar.html'
 
 def loginUser(request):
     form = LoginForm()
@@ -43,7 +32,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return render(request, 'iflogin/logout.html')
+            return render(request, 'iflogout/homepage.html')
         else:
             messages.info(request, 'Zły login lub hasło')
 
@@ -67,5 +56,5 @@ def registration(request):
 def userLogOut(request):
     form = LoginForm()
     logout(request)
-    context = {'form': form}
+    context = {'form': form }
     return render(request, 'iflogout/login.html', context)
